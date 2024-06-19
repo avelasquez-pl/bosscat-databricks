@@ -1,14 +1,14 @@
 # Databricks notebook source
-# MAGIC %run "/Workspace/Users/andres.velasquez@bosscathome.com/utils/utils"
+# MAGIC %run "../../utils/utils"
 
 # COMMAND ----------
 
 connection_config = {
-    "host": dbutils.secrets.get(scope="devprimarydb", key="host"),
-    "port": dbutils.secrets.get(scope="devprimarydb", key="port"),
-    "database": dbutils.secrets.get(scope="devprimarydb", key="database"),
-    "username": dbutils.secrets.get(scope="devprimarydb", key="username"),
-    "password": dbutils.secrets.get(scope="devprimarydb", key="password"),
+    "host": dbutils.secrets.get(scope="primarydb", key="host"),
+    "port": dbutils.secrets.get(scope="primarydb", key="port"),
+    "database": dbutils.secrets.get(scope="primarydb", key="database"),
+    "username": dbutils.secrets.get(scope="primarydb", key="username"),
+    "password": dbutils.secrets.get(scope="primarydb", key="password"),
 }
 
 # COMMAND ----------
