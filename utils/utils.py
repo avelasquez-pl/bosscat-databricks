@@ -4,8 +4,10 @@
 
 # COMMAND ----------
 
+from pyspark.sql import functions as F
+
 def load_table_from_database(connection_config: dict, source_table_name: str):
-    return (
+    df = (
         spark.read.format("postgresql")
         .option("dbtable", source_table_name)
         .option("host", connection_config.get("host"))
@@ -15,7 +17,9 @@ def load_table_from_database(connection_config: dict, source_table_name: str):
         .option("password", connection_config.get("password"))
         .load()
     )
-    
+    all_cols = F.concat_ws("", *df.columns)
+    df = df.withColumn("hashkey", F.md5(all_cols))
+    return df
 
 
 # COMMAND ----------
